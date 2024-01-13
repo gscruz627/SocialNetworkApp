@@ -1,6 +1,4 @@
-import { useSelector } from "react-redux";
 import Navbar from "../components/Navbar";
-import UploadStory from "../components/UploadStory";
 import CompWrapper from "../components/CompWrapper";
 import { Box, Typography } from "@mui/material";
 import { useMediaQuery, CircularProgress } from "@mui/material";
@@ -13,8 +11,7 @@ import { useTheme } from "@emotion/react";
 import ProfilePicture from "../components/ProfilePicture";
 import { useEffect } from "react";
 const SearchResults = () => {
-  const SERVER_URL = import.meta.env["VITE_SERVER_URL"]
-  const user = useSelector((state) => state.user);
+  const SERVER_URL = import.meta.env.VITE_SERVER_URL
   const { keyword, choice } = useParams();
   const navigate = useNavigate();
   const isWideScreen = useMediaQuery("(min-width:1000px)");

@@ -16,7 +16,7 @@ import Dropzone from "react-dropzone";
 import CompWrapper from "./CompWrapper";
 
 const Form = () => {
-  const SERVER_URL = import.meta.env["SERVER_URL"]
+  const SERVER_URL = import.meta.env.VITE_SERVER_URL
   const [isRegister, setIsRegister] = useState(false);
   const [username, setUsername] = useState("");
   const [usernameValid, setUsernameValid] = useState(true);

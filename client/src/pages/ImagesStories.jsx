@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar";
 import SidePanel from "../components/SidePanel";
 import { CircularProgress, useMediaQuery, Box } from "@mui/material";
 const ImagesStories = () => {
-  const SERVER_URL = import.meta.env["VITE_SERVER_URL"]
+  const SERVER_URL = import.meta.env.VITE_SERVER_URL
   const isWideScreen = useMediaQuery("(min-width:1000px)");
   const stories = useSelector((state) => state.stories);
   const user = useSelector((state) => state.user);

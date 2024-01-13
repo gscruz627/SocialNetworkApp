@@ -7,7 +7,6 @@ import {
   TextField,
   Alert,
   Button,
-  IconButton,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -17,14 +16,13 @@ import {
 import Dropzone from "react-dropzone";
 import { EditOutlined, Warning } from "@mui/icons-material";
 import Navbar from "../components/Navbar";
-import Form from "../components/Form";
 import { useSelector, useDispatch } from "react-redux";
 import { setLogin, setLogout } from "../store";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Login = () => {
-  const SERVER_URL = import.meta.env["VITE_SERVER_URL"]
+  const SERVER_URL = import.meta.env.VITE_SERVER_URL
   const { palette } = useTheme();
   const user = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
@@ -43,14 +41,6 @@ const Login = () => {
   const [picture, setPicture] = useState(null);
   const [confirmedChanges, setConfirmedChanges] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
-  const resetForm = () => {
-    setUsername("");
-    setPassword("");
-    setPicture(null);
-    setEmail("");
-    setIsEmailValid(true);
-    setIsPasswordValid(true);
-  };
   const handleUsername = (e) => {
     setUsername(e.target.value);
     if (

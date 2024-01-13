@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -10,7 +10,7 @@ import CompWrapper from "./CompWrapper";
 
 
 const Following = () => {
-  const SERVER_URL = import.meta.env["VITE_SERVER_URL"]
+  const SERVER_URL = import.meta.env.VITE_SERVER_URL
   let user = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
   const navigate = useNavigate();
