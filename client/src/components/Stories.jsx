@@ -21,6 +21,7 @@ const Stories = ({
   isSearch = null,
   searchKeyword = null,
 }) => {
+  const SERVER_URL = import.meta.env["VITE_SERVER_URL"]
   const dispatch = useDispatch();
   const stories = useSelector((state) => state.stories);
   const user = useSelector((state) => state.user);
@@ -30,14 +31,14 @@ const Stories = ({
   const getStories = async (filter) => {
     let response = null;
     if (user) {
-      response = await fetch(`http://localhost:8080/stories?filter=${filter}`, {
+      response = await fetch(`${SERVER_URL}/stories?filter=${filter}`, {
         method: "GET",
         headers: {
           Authorization: `Tkn_bearer ${token}`,
         },
       });
     } else {
-      response = await fetch(`http://localhost:8080/stories?filter=${filter}`, {
+      response = await fetch(`${SERVER_URL}/stories?filter=${filter}`, {
         method: "GET",
       });
     }
@@ -49,7 +50,7 @@ const Stories = ({
     let response = null;
     if (user) {
       response = await fetch(
-        `http://localhost:8080/${userId}/stories?filter=${filter}`,
+        `${SERVER_URL}/${userId}/stories?filter=${filter}`,
         {
           method: "GET",
           headers: {
@@ -59,7 +60,7 @@ const Stories = ({
       );
     } else {
       response = await fetch(
-        `http://localhost:8080/${userId}/stories?filter=${filter}`,
+        `${SERVER_URL}/${userId}/stories?filter=${filter}`,
         {
           method: "GET",
         }
@@ -72,7 +73,7 @@ const Stories = ({
     let response = null;
     if (user) {
       response = await fetch(
-        `http://localhost:8080/topics/${topic}?filter=${filter}`,
+        `${SERVER_URL}/topics/${topic}?filter=${filter}`,
         {
           method: "GET",
           headers: {
@@ -82,7 +83,7 @@ const Stories = ({
       );
     } else {
       response = await fetch(
-        `http://localhost:8080/topics/${topic}?filter=${filter}`,
+        `${SERVER_URL}/topics/${topic}?filter=${filter}`,
         {
           method: "GET",
         }
@@ -93,7 +94,7 @@ const Stories = ({
   };
   const getAgreeStories = async (filter) => {
     const response = await fetch(
-      `http://localhost:8080/${user._id}/agree?filter=${filter}`,
+      `${SERVER_URL}/${user._id}/agree?filter=${filter}`,
       {
         method: "GET",
         headers: {
@@ -106,7 +107,7 @@ const Stories = ({
   };
   const getDisagreeStories = async (filter) => {
     const response = await fetch(
-      `http://localhost:8080/${user._id}/disagree?filter=${filter}`,
+      `${SERVER_URL}/${user._id}/disagree?filter=${filter}`,
       {
         method: "GET",
         headers: {
@@ -119,7 +120,7 @@ const Stories = ({
   };
   const getSearchResults = async () => {
     const response = await fetch(
-      `http://localhost:8080/search/stories/${searchKeyword}`,
+      `${SERVER_URL}/search/stories/${searchKeyword}`,
       {
         method: "GET",
         headers: {

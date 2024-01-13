@@ -8,7 +8,9 @@ import { useDispatch } from "react-redux";
 import ProfilePicture from "./ProfilePicture";
 import CompWrapper from "./CompWrapper";
 
+
 const Following = () => {
+  const SERVER_URL = import.meta.env["VITE_SERVER_URL"]
   let user = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
   const navigate = useNavigate();
@@ -19,7 +21,7 @@ const Following = () => {
   if (user) {
     getFollowing = async () => {
       const response = await fetch(
-        `http://localhost:8080/auth/${user._id}/following`,
+        `${SERVER_URL}/${user._id}/following`,
         {
           method: "GET",
           headers: {

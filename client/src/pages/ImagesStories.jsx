@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import SidePanel from "../components/SidePanel";
 import { CircularProgress, useMediaQuery, Box } from "@mui/material";
 const ImagesStories = () => {
+  const SERVER_URL = import.meta.env["VITE_SERVER_URL"]
   const isWideScreen = useMediaQuery("(min-width:1000px)");
   const stories = useSelector((state) => state.stories);
   const user = useSelector((state) => state.user);
@@ -13,14 +14,14 @@ const ImagesStories = () => {
   const getStories = async () => {
     let response = null;
     if (user) {
-      response = await fetch("http://localhost:8080/stories", {
+      response = await fetch(`${SERVER_URL}/stories`, {
         method: "GET",
         headers: {
           Authorization: `Tkn_bearer ${token}`,
         },
       });
     } else {
-      response = await fetch("http://localhost:8080/stories", {
+      response = await fetch(`${SERVER_URL}/stories`, {
         method: "GET",
       });
     }

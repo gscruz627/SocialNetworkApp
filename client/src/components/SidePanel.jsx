@@ -21,6 +21,7 @@ import {
 } from "@mui/icons-material";
 
 const SidePanel = () => {
+  const SERVER_URL = import.meta.env["VITE_SERVER_URL"]
   const { palette } = useTheme();
   const isWideScreen = useMediaQuery("(min-width:1000px)");
   const user = useSelector((state) => state.user);
@@ -28,7 +29,7 @@ const SidePanel = () => {
   const [topics, setTopics] = useState(null);
   const [openTopics, setOpenTopics] = useState(isWideScreen);
   const getTopics = async () => {
-    const response = await fetch("http://localhost:8080/topics", {
+    const response = await fetch(`${SERVER_URL}/topics`, {
       method: "GET",
     });
     const topicsJson = await response.json();

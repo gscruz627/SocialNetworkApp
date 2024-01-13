@@ -51,6 +51,7 @@ const Story = ({
   rating,
   isTopic,
 }) => {
+  const SERVER_URL = import.meta.env["VITE_SERVER_URL"]
   const [update, setUpdate] = useState(false);
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -88,7 +89,7 @@ const Story = ({
   ).toFixed(2);
   const handleRating = async (value) => {
     const response = await fetch(
-      `http://localhost:8080/story/${storyId}/rate`,
+      `${SERVER_URL}/story/${storyId}/rate`,
       {
         method: "PATCH",
         headers: {
@@ -104,7 +105,7 @@ const Story = ({
 
   const handleAgree = async () => {
     const response = await fetch(
-      `http://localhost:8080/story/${storyId}/agree`,
+      `${SERVER_URL}/story/${storyId}/agree`,
       {
         method: "PATCH",
         headers: {
@@ -121,7 +122,7 @@ const Story = ({
 
   const handleDisagree = async () => {
     const response = await fetch(
-      `http://localhost:8080/story/${storyId}/disagree`,
+      `${SERVER_URL}/story/${storyId}/disagree`,
       {
         method: "PATCH",
         headers: {
@@ -138,7 +139,7 @@ const Story = ({
   const handleComment = async (e) => {
     e.preventDefault();
     const response = await fetch(
-      `http://localhost:8080/story/${storyId}/newComment`,
+      `${SERVER_URL}/story/${storyId}/newComment`,
       {
         method: "POST",
         headers: {
@@ -154,7 +155,7 @@ const Story = ({
 
   const handleCommentAgree = async (commentId) => {
     const response = await fetch(
-      `http://localhost:8080/comment/${commentId}/agree`,
+      `${SERVER_URL}/comment/${commentId}/agree`,
       {
         method: "PATCH",
         headers: {
@@ -169,7 +170,7 @@ const Story = ({
   };
   const handleCommentDisagree = async (commentId) => {
     const response = await fetch(
-      `http://localhost:8080/comment/${commentId}/disagree`,
+      `${SERVER_URL}/comment/${commentId}/disagree`,
       {
         method: "PATCH",
         headers: {
@@ -183,7 +184,7 @@ const Story = ({
     dispatch(setStory({ story: savedStory }));
   };
   const handleDeleteStory = async () => {
-    const response = await fetch(`http://localhost:8080/story/${storyId}`, {
+    const response = await fetch(`${SERVER_URL}/story/${storyId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Tkn_bearer ${token}`,
@@ -195,7 +196,7 @@ const Story = ({
     navigate(0);
   };
   const handleDeleteComment = async (thisCommentId) => {
-    const response = await fetch(`http://localhost:8080/story/${thisCommentId}/comment`, {
+    const response = await fetch(`${SERVER_URL}/story/${thisCommentId}/comment`, {
       method: "DELETE",
       headers: {
         Authorization: `Tkn_bearer ${token}`,

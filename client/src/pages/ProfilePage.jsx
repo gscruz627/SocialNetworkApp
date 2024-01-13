@@ -20,6 +20,7 @@ import Stories from "../components/Stories";
 import SidePanel from "../components/SidePanel"
 
 const ProfilePage = () => {
+  const SERVER_URL = import.meta.env["VITE_SERVER_URL"]
   const isWideScreen = useMediaQuery("(min-width:1000px)");
   const [thisUser, setThisUser] = useState(null);
   const user = useSelector((state) => state.user);
@@ -28,7 +29,7 @@ const ProfilePage = () => {
   const { palette } = useTheme();
   const dispatch = useDispatch();
   const getUserInfo = async () => {
-    const response = await fetch(`http://localhost:8080/auth/${thisUserId}`, {
+    const response = await fetch(`${SERVER_URL}/auth/${thisUserId}`, {
       method: "GET",
     });
     const thisUserResponse = await response.json();
@@ -43,7 +44,7 @@ const ProfilePage = () => {
   
   const handleFollow = async () => {
     const response = await fetch(
-      `http://localhost:8080/auth/follow/${user._id}/${thisUserId}`,
+      `${SERVER_URL}/auth/follow/${user._id}/${thisUserId}`,
       {
         method: "PATCH",
         headers: { Authorization: `Tkn_bearer ${token}` },

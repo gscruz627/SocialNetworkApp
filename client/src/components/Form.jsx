@@ -16,6 +16,7 @@ import Dropzone from "react-dropzone";
 import CompWrapper from "./CompWrapper";
 
 const Form = () => {
+  const SERVER_URL = import.meta.env["SERVER_URL"]
   const [isRegister, setIsRegister] = useState(false);
   const [username, setUsername] = useState("");
   const [usernameValid, setUsernameValid] = useState(true);
@@ -102,7 +103,7 @@ const Form = () => {
       formData.append("picture", picture);
       formData.append("email", email);
 
-      const response = await fetch("http://localhost:8080/auth/register", {
+      const response = await fetch(`${SERVER_URL}/auth/register`, {
         method: "POST",
         body: formData,
       });
@@ -119,7 +120,7 @@ const Form = () => {
   const login = async (e) => {
     e.preventDefault()
     if (username && password) {
-      const response = await fetch("http://localhost:8080/auth/login", {
+      const response = await fetch(`${SERVER_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

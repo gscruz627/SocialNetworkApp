@@ -13,6 +13,7 @@ import { useTheme } from "@emotion/react";
 import ProfilePicture from "../components/ProfilePicture";
 import { useEffect } from "react";
 const SearchResults = () => {
+  const SERVER_URL = import.meta.env["VITE_SERVER_URL"]
   const user = useSelector((state) => state.user);
   const { keyword, choice } = useParams();
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ const SearchResults = () => {
   const [results, setResults] = useState(null);
   const getUserResults = async () => {
     const response = await fetch(
-      `http://localhost:8080/search/users/${keyword}`,
+      `${SERVER_URL}/search/users/${keyword}`,
       {
         method: "GET",
       }

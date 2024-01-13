@@ -24,6 +24,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const Login = () => {
+  const SERVER_URL = import.meta.env["VITE_SERVER_URL"]
   const { palette } = useTheme();
   const user = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
@@ -92,7 +93,7 @@ const Login = () => {
     let responsePassword;
     if (user.username !== username && usernameValid) {
       responseUsername = await fetch(
-        `http://localhost:8080/auth/changeUsername`,
+        `${SERVER_URL}/auth/changeUsername`,
         {
           method: "PATCH",
           headers: {
@@ -111,7 +112,7 @@ const Login = () => {
       }
     }
     if (user.email !== email && isEmailValid) {
-      responseEmail = await fetch(`http://localhost:8080/auth/changeEmail`, {
+      responseEmail = await fetch(`${SERVER_URL}/auth/changeEmail`, {
         method: "PATCH",
         headers: {
           Authorization: `Tkn_bearer ${token}`,
@@ -129,7 +130,7 @@ const Login = () => {
     }
     if (password && isPasswordValid) {
       responsePassword = await fetch(
-        `http://localhost:8080/auth/changePassword`,
+        `${SERVER_URL}/auth/changePassword`,
         {
           method: "PATCH",
           headers: {
@@ -157,7 +158,7 @@ const Login = () => {
       formData.append("picture", picture);
       formData.append("userId", user._id);
       responsePicture = await fetch(
-        `http://localhost:8080/auth/changeProfilePicture`,
+        `${SERVER_URL}/auth/changeProfilePicture`,
         {
           method: "PATCH",
           headers: {
@@ -191,7 +192,7 @@ const Login = () => {
     }
   };
   const handleDeleteUser = async () => {
-    const response = await fetch(`http://localhost:8080/auth/UserDelete`, {
+    const response = await fetch(`${SERVER_URL}/auth/UserDelete`, {
       method: "DELETE",
       headers: {
         Authorization: `Tkn_bearer ${token}`,

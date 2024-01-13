@@ -37,7 +37,8 @@ const NewStory = () => {
 
   
   const getTopics = async () => {
-    const response = await fetch("http://localhost:8080/topics", {
+    const SERVER_URL = import.meta.env["VITE_SERVER_URL"]
+    const response = await fetch(`${SERVER_URL}/topics`, {
       method: "GET",
     });
     const topicsJson = await response.json();
@@ -57,7 +58,7 @@ const NewStory = () => {
       if (picture) {
         formData.append("picture", picture);
       }
-      const fetchResponse = await fetch("http://localhost:8080/newStory", {
+      const fetchResponse = await fetch(`${SERVER_URL}/newStory`, {
         method: "POST",
         headers: { Authorization: `Tkn_bearer ${token}` },
         body: formData,
@@ -69,7 +70,7 @@ const NewStory = () => {
   };
   const getResponseStoryData = async () => {
     const fetchResponse = await fetch(
-      `http://localhost:8080/story/${response}`, {
+      `${SERVER_URL}/story/${response}`, {
         method: "GET"
       }
     )

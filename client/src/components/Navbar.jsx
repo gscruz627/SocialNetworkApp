@@ -225,7 +225,7 @@ const Navbar = () => {
             {user ? (
               <>
                 <ProfilePicture
-                  picturePath={`http://localhost:8080/public/assets/${user.userPicturePath}`}
+                  picturePath={`${user.userPicturePath}`}
                   size="35px"
                 />
                 <Box display="flex" textAlign="center" alignItems="center">
