@@ -20,6 +20,7 @@ import CompWrapper from "../components/CompWrapper";
 import Navbar from "../components/Navbar";
 
 const NewStory = () => {
+  const SERVER_URL = import.meta.env.VITE_SERVER_URL
   const isWideScreen = useMediaQuery("(min-width:1000px)");
   const token = useSelector((state) => state.token);
   const user = useSelector((state) => state.user);
@@ -37,7 +38,6 @@ const NewStory = () => {
 
   
   const getTopics = async () => {
-    const SERVER_URL = import.meta.env["VITE_SERVER_URL"]
     const response = await fetch(`${SERVER_URL}/topics`, {
       method: "GET",
     });
